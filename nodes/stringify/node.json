@@ -1,0 +1,51 @@
+{
+  "name": "stringify",
+  "ns": "qs",
+  "description": "Stringify query parameters",
+  "async": true,
+  "phrases": {
+    "active": "Stringifying parameters"
+  },
+  "dependencies": {
+    "npm": {
+      "qs": "latest"
+    }
+  },
+  "ports": {
+    "input": {
+      "in": {
+        "title": "Parameters",
+        "type": "object",
+        "async": true
+      },
+      "options": {
+        "title": "Options",
+        "type": "object",
+        "properties": {
+          "indices": {
+            "title": "Indices",
+            "description": "When arrays are stringified, by default they are given explicit indices",
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "delimiter": {
+          "title": "Delimiter",
+          "description": "Optional delimiter",
+          "type": "any",
+          "required": false
+        }
+      }
+    },
+    "output": {
+      "out": {
+        "title": "Querystring",
+        "type": "string"
+      },
+      "error": {
+        "title": "Error",
+        "type": "Error"
+      }
+    }
+  }
+}

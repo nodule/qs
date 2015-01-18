@@ -1,0 +1,131 @@
+{
+  "name": "qs",
+  "description": "QS for Chiχ",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/qs.git"
+  },
+  "dependencies": {
+    "qs": "^2.3.3"
+  },
+  "nodes": [
+    {
+      "ports": {
+        "input": {
+          "in": {
+            "title": "Query string",
+            "type": "string",
+            "async": true
+          },
+          "options": {
+            "title": "Options",
+            "type": "object",
+            "properties": {
+              "depth": {
+                "title": "Depth",
+                "description": "The depth limit helps mitigate abuse when qs is used to parse user input, and it is recommended to keep it a reasonably small number.",
+                "type": "integer",
+                "required": false
+              },
+              "parameterLimit": {
+                "title": "Parameter limit",
+                "description": "By default qs will only parse up to 1000 parameters. This can be overridden by passing a parameterLimit option",
+                "type": "integer",
+                "default": 1000
+              },
+              "arrayLimit": {
+                "title": "Array limit",
+                "description": "qs will limit specifying indices in an array to a maximum index of 20. Any array members with an index of greater than 20 will instead be converted to an object with the index as the key",
+                "type": "integer",
+                "default": 20
+              },
+              "delimiter": {
+                "title": "Delimiter",
+                "description": "Optional delimiter, delimiters can be a regular expression too",
+                "type": "any",
+                "required": false
+              }
+            }
+          }
+        },
+        "output": {
+          "out": {
+            "title": "Query parameters",
+            "type": "object"
+          },
+          "error": {
+            "title": "Error",
+            "type": "Error"
+          }
+        }
+      },
+      "dependencies": {
+        "npm": {
+          "qs": "latest"
+        }
+      },
+      "phrases": {
+        "active": "Parsing querystring"
+      },
+      "async": true,
+      "description": "Querystring parsing with some added security",
+      "ns": "qs",
+      "name": "parse",
+      "fn": "on.input.in = function() {\n  try {\n    output({out: qs.parse(data, input.options)});\n  } catch (e) {\n     output({error: e});\n  }\n};\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "in": {
+            "title": "Parameters",
+            "type": "object",
+            "async": true
+          },
+          "options": {
+            "title": "Options",
+            "type": "object",
+            "properties": {
+              "indices": {
+                "title": "Indices",
+                "description": "When arrays are stringified, by default they are given explicit indices",
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "delimiter": {
+              "title": "Delimiter",
+              "description": "Optional delimiter",
+              "type": "any",
+              "required": false
+            }
+          }
+        },
+        "output": {
+          "out": {
+            "title": "Querystring",
+            "type": "string"
+          },
+          "error": {
+            "title": "Error",
+            "type": "Error"
+          }
+        }
+      },
+      "dependencies": {
+        "npm": {
+          "qs": "latest"
+        }
+      },
+      "phrases": {
+        "active": "Stringifying parameters"
+      },
+      "async": true,
+      "description": "Stringify query parameters",
+      "ns": "qs",
+      "name": "stringify",
+      "fn": "on.input.in = function() {\n  try {\n    output({out: qs.stringify(data, input.options)});\n  } catch (e) {\n     output({error: e});\n  }\n};\n"
+    }
+  ],
+  "twigs": []
+}
