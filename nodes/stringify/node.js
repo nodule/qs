@@ -1,7 +1,7 @@
 on.input.in = function() {
   try {
-    output({out: qs.stringify($.in, $.options)});
+    output({out: $.write('in', qs.stringify($.in, $.options))});
   } catch (e) {
-     output({error: e});
+     output({error: $.create(e)});
   }
 };
