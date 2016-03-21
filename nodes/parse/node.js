@@ -1,6 +1,6 @@
 on.input.in = function() {
   try {
-    output({out: qs.parse(input.in, input.options)});
+    output({out: qs.parse($.in, $.options)});
   } catch (e) {
      output({error: e});
   }
