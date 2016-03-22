@@ -21,11 +21,11 @@ module.exports = {
           var r = function() {
             try {
               output({
-                out: qs.stringify(data, input.options)
+                out: $.write('in', qs.stringify($.in, $.options))
               });
             } catch (e) {
               output({
-                error: e
+                error: $.create(e)
               });
             }
           }.call(this);

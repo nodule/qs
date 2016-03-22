@@ -72,7 +72,7 @@
       "description": "Querystring parsing with some added security",
       "ns": "qs",
       "name": "parse",
-      "fn": "on.input.in = function() {\n  try {\n    output({out: qs.parse(data, input.options)});\n  } catch (e) {\n     output({error: e});\n  }\n};\n"
+      "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.parse($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n"
     },
     {
       "ports": {
@@ -124,7 +124,7 @@
       "description": "Stringify query parameters",
       "ns": "qs",
       "name": "stringify",
-      "fn": "on.input.in = function() {\n  try {\n    output({out: qs.stringify(data, input.options)});\n  } catch (e) {\n     output({error: e});\n  }\n};\n"
+      "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.stringify($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n"
     }
   ],
   "twigs": []
