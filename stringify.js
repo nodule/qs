@@ -17,7 +17,7 @@ module.exports = {
         title: "Parameters",
         type: "object",
         async: true,
-        fn: function __IN__(data, x, source, state, input, output, qs) {
+        fn: function __IN__(data, source, state, input, $, output, qs) {
           var r = function() {
             try {
               output({
