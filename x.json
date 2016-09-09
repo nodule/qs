@@ -11,6 +11,18 @@
   },
   "nodes": [
     {
+      "name": "parse",
+      "ns": "qs",
+      "description": "Querystring parsing with some added security",
+      "async": true,
+      "phrases": {
+        "active": "Parsing querystring"
+      },
+      "dependencies": {
+        "npm": {
+          "qs": "latest"
+        }
+      },
       "ports": {
         "input": {
           "in": {
@@ -60,21 +72,21 @@
           }
         }
       },
+      "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.parse($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n"
+    },
+    {
+      "name": "stringify",
+      "ns": "qs",
+      "description": "Stringify query parameters",
+      "async": true,
+      "phrases": {
+        "active": "Stringifying parameters"
+      },
       "dependencies": {
         "npm": {
           "qs": "latest"
         }
       },
-      "phrases": {
-        "active": "Parsing querystring"
-      },
-      "async": true,
-      "description": "Querystring parsing with some added security",
-      "ns": "qs",
-      "name": "parse",
-      "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.parse($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n"
-    },
-    {
       "ports": {
         "input": {
           "in": {
@@ -112,20 +124,7 @@
           }
         }
       },
-      "dependencies": {
-        "npm": {
-          "qs": "latest"
-        }
-      },
-      "phrases": {
-        "active": "Stringifying parameters"
-      },
-      "async": true,
-      "description": "Stringify query parameters",
-      "ns": "qs",
-      "name": "stringify",
       "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.stringify($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n"
     }
-  ],
-  "twigs": []
+  ]
 }
